@@ -1,3 +1,4 @@
+// Wei Chen 2017-9-08
 import scala.sys.process._
 
 object Rocket extends App {
@@ -5,12 +6,12 @@ object Rocket extends App {
     def clear = "clear" !
 
     val rocket = """
-        /^A^\    
-         ]=[     
-         ]=[     
-        /{O}\    
-    A=^[|=H=|]^=A
-    """
+    /^A^\    
+     ]=[     
+     ]=[     
+    /{O}\    
+A=^[|=H=|]^=A
+"""
 
     def fire = {
         val tmp = if(scala.util.Random.nextDouble > 0.6) "W" else "V"
