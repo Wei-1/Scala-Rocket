@@ -1,8 +1,10 @@
+package iptechinc.com
+
 import scala.swing._
 import scala.swing.event._
 import java.awt.event._
 
-object KeyEventTest extends SimpleSwingApplication {
+object Rocket extends SimpleSwingApplication {
 
     val rocket = """
   ╒▲╕  
@@ -10,6 +12,7 @@ object KeyEventTest extends SimpleSwingApplication {
 A=[╦]=A
    W   
 """
+
     println(rocket)
 
     val rocket_m = """
@@ -25,6 +28,7 @@ A=[╦]=A
 A[=A   
  VV    
 """
+
    val rocket_r = """
     ♦╕ 
     ├☼ 
@@ -47,13 +51,13 @@ A[=A
                     ta.text = rocket_m
                 case KeyReleased(_, Key.Space, _, _) =>
                     ta.text = rocket
-                case KeyPressed(_, Key.A, _, _) =>
+                case KeyPressed(_, Key.Left, _, _) =>
                     ta.text = rocket_l
-                case KeyReleased(_, Key.A, _, _) =>
+                case KeyReleased(_, Key.Left, _, _) =>
                     ta.text = rocket
-                case KeyPressed(_, Key.S, _, _) =>
+                case KeyPressed(_, Key.Right, _, _) =>
                     ta.text = rocket_r
-                case KeyReleased(_, Key.S, _, _) =>
+                case KeyReleased(_, Key.Right, _, _) =>
                     ta.text = rocket
             }
             focusable = true
