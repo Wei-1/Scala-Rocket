@@ -1,52 +1,63 @@
-import scala.sys.process._
+import scala.swing._
+import scala.swing.event._
+import java.awt.event._
 
-object Rocket extends App {
+object KeyEventTest extends SimpleSwingApplication {
 
-    def clear = "clear" !
-
-    def rand: Double = scala.util.Random.nextDouble
-
-    def fire = {
-        val tmp = if(rand > 0.6) "W" else "V"
-        if (rand > 0.8) tmp.toLowerCase else tmp
-    }
+    val rocket = """
+  ╒▲╕  
+  ├☼┤  
+A=[╦]=A
+   W   
+"""
+    println(rocket)
 
     val rocket_m = """
   ╒▲╕  
   ├☼┤  
 A=[╦]=A
+   w   
 """
+
    val rocket_l = """
  ╒♦    
  ☼┤    
 A[=A   
+ VV    
 """
    val rocket_r = """
     ♦╕ 
     ├☼ 
    A=]A
+    VV 
 """
 
-    var state = "m"
-    while(true) {
-        if(rand > 0.95) {
-            if(state == "m") {
-                state = if(rand >= 0.5) "l" else "r"
-            } else if(state == "l") {
-                state = if(rand >= 0.5) "m" else "r"
-            } else if(state == "r") {
-                state = if(rand >= 0.5) "m" else "l"
+    def top = new MainFrame {
+        val ta = new TextArea {
+            text = rocket
+            font = new Font("Courier", 0, 20)
+        }
+
+        contents = new BoxPanel(Orientation.Vertical) {
+            contents += ta
+            border = Swing.EmptyBorder(0,0,0,0)
+            listenTo(keys)
+            reactions += {
+                case KeyPressed(_, Key.Space, _, _) =>
+                    ta.text = rocket_m
+                case KeyReleased(_, Key.Space, _, _) =>
+                    ta.text = rocket
+                case KeyPressed(_, Key.A, _, _) =>
+                    ta.text = rocket_l
+                case KeyReleased(_, Key.A, _, _) =>
+                    ta.text = rocket
+                case KeyPressed(_, Key.S, _, _) =>
+                    ta.text = rocket_r
+                case KeyReleased(_, Key.S, _, _) =>
+                    ta.text = rocket
             }
+            focusable = true
+            requestFocus
         }
-        clear
-        
-        if(state == "m") {
-            println(rocket_m + "   " + fire + "   ")
-        } else if(state == "l") {
-            println(rocket_l + " " + fire + fire + "    ")
-        } else if(state == "r") {
-            println(rocket_r + "    " + fire + fire + " ")
-        }
-        Thread.sleep(100)
     }
-}
+}   
