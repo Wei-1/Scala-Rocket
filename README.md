@@ -11,7 +11,7 @@ scalac Rocket.scala
 ## Run
 
 ```
-scala iptechinc.com.Rocket
+scala com.scalaml.Rocket
 ```
 
 ## What will happen?

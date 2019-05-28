@@ -1,4 +1,4 @@
-package iptechinc.com
+package com.scalaml
 
 import scala.swing._
 import scala.swing.event._
